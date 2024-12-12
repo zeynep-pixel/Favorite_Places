@@ -1,5 +1,6 @@
 
 import 'package:favorite_places/provider/user_place.dart';
+import 'package:favorite_places/widgets/image_input.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -42,7 +43,7 @@ class _NewItemState extends ConsumerState<NewItem> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Yeni öğ ekleyin.')),
+      appBar: AppBar(title: const Text('Yeni öğe ekleyin.')),
       body: Padding(
         padding: const EdgeInsets.all(12),
         child: Form(
@@ -54,6 +55,7 @@ class _NewItemState extends ConsumerState<NewItem> {
               controller: _titlecontroller,
               style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),
             ),
+            ImageInput(),
             const SizedBox(height: 16,)
             ,
             ElevatedButton(onPressed: saveItem, child: const Text('Kaydet'))]
