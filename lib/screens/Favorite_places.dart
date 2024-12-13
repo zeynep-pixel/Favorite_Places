@@ -19,7 +19,7 @@ class FavoritePlaces extends ConsumerWidget {
         title: const Center(child: Text('Favorite Places')),
         actions: [IconButton(onPressed: (){ Navigator.of(context).push(MaterialPageRoute(builder: (ctx)=>  NewItem()));}, icon: const Icon(Icons.add))],
       ),
-      body: PlacesList(places: userPlaces)
+      body: Padding(padding: const EdgeInsets.all(8),child: PlacesList(places: userPlaces))
     );
   }
 }

@@ -1,4 +1,6 @@
 
+import 'dart:io';
+
 import 'package:favorite_places/provider/user_place.dart';
 import 'package:favorite_places/widgets/image_input.dart';
 import 'package:flutter/material.dart';
@@ -15,15 +17,15 @@ class NewItem extends ConsumerStatefulWidget {
 class _NewItemState extends ConsumerState<NewItem> {
   final _titlecontroller = TextEditingController();
   final formKey = GlobalKey<FormState>();
- 
+  File? selectedImage ;
  
   void saveItem(){
     final enteredName = _titlecontroller.text;
-    if (enteredName.isEmpty) { 
+    if (enteredName.isEmpty || selectedImage == null) { 
       return;
     }
       
-    ref.read(UserPlaceProvider.notifier).addPlace(enteredName);
+    ref.read(UserPlaceProvider.notifier).addPlace(enteredName, selectedImage!);
     Navigator.of(context).pop();
    
   
@@ -55,7 +57,7 @@ class _NewItemState extends ConsumerState<NewItem> {
               controller: _titlecontroller,
               style: Theme.of(context).textTheme.titleMedium!.copyWith(color: Colors.white),
             ),
-            ImageInput(),
+            ImageInput(onPickedImage: (image){ selectedImage = image;},),
             const SizedBox(height: 16,)
             ,
             ElevatedButton(onPressed: saveItem, child: const Text('Kaydet'))]
